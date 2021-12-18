@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT.Once Sejahtera</title>
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <img src="logo.png" class="picture" alt="">
+        <div class="heading">PT.Once Sejahtera</div>
+    </nav>
+    <br><br><br><br>
+    
+    <table>
+        <tr>
+            <th>Kategori</th>
+            <th>Abodemen</th>
+            <th>Tarif per-KWH</th>
+            <th>Pajak</th>
+        </tr>
+        <tr>
+            <td>Sosial</td>
+            <td>10000</td>
+            <td>300</td>
+            <td>0%</td>
+        </tr>
+        <tr>
+            <td>Rumah</td>
+            <td>30000</td>
+            <td>500</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Apartemen</td>
+            <td>50000</td>
+            <td>750</td>
+            <td>15%</td>
+        </tr>
+        <tr>
+            <td>Industri</td>
+            <td>75000</td>
+            <td>1000</td>
+            <td>20%</td>
+        </tr>
+        <tr>
+            <td>Villa</td>
+            <td>100000</td>
+            <td>1250</td>
+            <td>25%</td>
+        </tr>
+    </table>
+    <br><br>
+    <label for="nama" class="textLabel">Nama : </label>
+    <input type="text" id="nama" class="textLabel"><br><br>
+    <label for="hari" class="textLabel">Jumlah Hari : </label>
+    <input type="number" id="hari" class="textLabel"><br><br>
+
+    <label for="kategori" class="textLabel">Kategori </label>
+    <select id="peminjaman" class="fontSize">
+        <option>Sosial</option>
+        <option>Rumah</option>
+        <option>Apartemen</option>
+        <option>Industri</option>
+        <option>Villa</option>
+    </select><br><br>
+    
+    <input type="submit" value="submit" onclick=inputData() class="fontSize">
+
+    <script>
+        function inputData(){
+            var nama = document.getElementById("nama").value;
+            var hari = document.getElementById("hari").value;
+            var peminjaman = document.getElementById("peminjaman").value;
+            var abodemen = 0;
+            var tarif = 0;
+            var pajak = 0;
+            var total = 0;
+            var tarif1 = 0;
+            var tarif2 = 0;
+            
+            if (nama === ""){
+                alert("fields nama harus diisi!");
+            }
+
+            else if (hari > 30){
+                alert("Jumlah hari tidak valid");
+            }
+
+            else{
+
+                if(peminjaman === "Sosial"){
+                    abodemen = 10000;
+                    tarif = 300;
+                    pajak = 1;
+                }
+
+                else if(peminjaman === "Rumah"){
+                    abodemen = 30000;
+                    tarif = 500;
+                    pajak = 10 / 100;
+                }
+
+                else if(peminjaman === "Apartemen"){
+                    abodemen = 50000;
+                    tarif = 750;
+                    pajak = 0.15;
+                }
+                
+                else if(peminjaman === "Industri"){
+                    abodemen = 75000;
+                    tarif = 1000;
+                    pajak = 0.2;
+                }
+
+                else if(peminjaman === "Villa"){
+                    abodemen = 100000;
+                    tarif = 1250;
+                    pajak = 0.25;
+                }
+
+                function addTable1() {
+                    var column, row, table;
+                    table = document.createElement('table');
+
+                    row = table.insertRow(0); 
+                    column = row.insertCell(0);
+                    column.innerHTML = "Nama Pelanggan";
+                    column = row.insertCell(1);
+                    column.innerHTML = nama;
+
+                    row = table.insertRow(1);
+                    column = row.insertCell(0);
+                    column.innerHTML = "Kategori";
+                    column = row.insertCell(1);
+                    column.innerHTML = peminjaman;
+
+                    row = table.insertRow(2);
+                    column = row.insertCell(0);
+                    column.innerHTML = "Jumlah Pemakaian";
+                    column = row.insertCell(1);
+                    column.innerHTML = hari;
+
+                    document.getElementById("addtable1").appendChild(table);
+                }
+
+                function addTable2() {
+                    var column, row, table;
+                    table = document.createElement('table');
+
+                    total = (tarif * hari) + abodemen;
+                    pajak1 = total * pajak;
+
+                    row = table.insertRow(0); 
+                    column = row.insertCell(0);
+                    column.innerHTML = "SubTotal";
+                    column = row.insertCell(1);
+                    column.innerHTML = "";
+                    column = row.insertCell(2);
+                    column.innerHTML = "";
+                    column = row.insertCell(3);
+                    column.innerHTML = total + pajak1;
+                    row = table.insertRow(0); 
+                    column = row.insertCell(0);
+                    column.innerHTML = "Pajak";
+                    column = row.insertCell(1);
+                    column.innerHTML = "";
+                    column = row.insertCell(2);
+                    column.innerHTML = "";
+                    column = row.insertCell(3);
+                    column.innerHTML = pajak1;
+                    row = table.insertRow(0); 
+                    column = row.insertCell(0);
+                    column.innerHTML = "Bayar";
+                    column = row.insertCell(1);
+                    column.innerHTML = "";
+                    column = row.insertCell(2);
+                    column.innerHTML = "";
+                    column = row.insertCell(3);
+                    column.innerHTML = total;
+
+                    for (var i = 0; i < hari; i++) {
+                        row = table.insertRow(i); 
+                        column = row.insertCell(0);
+                        column.innerHTML = i+1;
+                        column = row.insertCell(1);
+                        tarif1 = tarif + tarif1;
+                        column.innerHTML = tarif1;
+                        column = row.insertCell(2);
+                        column.innerHTML = abodemen;
+                        column = row.insertCell(3);
+                        column.innerHTML = tarif1 + abodemen;
+                    }
+
+                    row = table.insertRow(0); 
+                    column = row.insertCell(0);
+                    column.innerHTML = "Jumlah";
+                    column = row.insertCell(1);
+                    column.innerHTML = "Tarif per KWH";
+                    column = row.insertCell(2);
+                    column.innerHTML = "Abodemen";
+                    column = row.insertCell(3);
+                    column.innerHTML = "SubTotal";
+
+                    document.getElementById("addtable2").appendChild(table);
+                }
+
+                document.getElementById("tagihan").innerHTML = "Tagihan Listrik";
+                document.getElementById("rincian").innerHTML = "Rincian Tagihan";
+                addTable1();
+                addTable2();
+            }
+        }
+
+
+    </script>
+
+    <br><br>
+    <div id="tagihan" class="textBold"></div>
+    <div id="addtable1"></div>
+    <br><br>
+    <div id="rincian" class="textBold"></div>
+    <div id="addtable2"></div>
+
+</body>
+</html>

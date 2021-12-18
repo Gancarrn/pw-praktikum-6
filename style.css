@@ -1,0 +1,42 @@
+.heading {
+  font-size: 50px;
+  text-align: center;
+}
+
+.picture {
+  float: left;
+  width: 58px;
+}
+
+.textLabel {
+  font-size: 25px;
+}
+
+.fontSize {
+  font-size: 30px;
+}
+
+.textBold {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+body {
+  background-image: url("");
+  background-color: #9acef3;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  width: 30%;
+}
+
+.noTable {
+  border: 0px solid black;
+  text-align: center;
+  width: 30%;
+}
